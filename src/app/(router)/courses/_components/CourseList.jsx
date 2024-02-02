@@ -9,6 +9,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import CourseItem from './CourseItem'
+import Link from 'next/link'
 
 const CourseList = () => {
 
@@ -48,23 +49,34 @@ const CourseList = () => {
 
             </div>
             {/* display Course List */}
-           {courseList?.length>0? 
-            <div className='grid grid-col-2 lg:grid-cols-3 gap-3'>
-                {courseList.map((item, index) => (
-                    <div key={index}>
-                        <CourseItem course={item} />
+            {courseList?.length > 0 ?
+
+                <div className='grid grid-col-2 lg:grid-cols-3 gap-3'>
+                    {courseList.map((item, index) => (
+
+<Link href={'/course-preview/'+ item.slug}>
+
+
+                        <div key={index}>
+                            <CourseItem course={item} />
+                        </div>
+</Link>
+                    ))}
+                </div>
+                :
+                <div className='flex flex-wrap justify-center items-start'>
+                {[1, 2, 3, 4,5,6].map((item, index) => (
+                    <div key={index} className='w-auto h-[240px] rounded-xl m-2 bg-slate-200 animate-pulse gap-5 p-5 flex flex-col justify-between'>
+                        <div className='bg-slate-400 rounded-lg w-80 h-40 p-10 pt-6'></div>
+                        <div className='bg-slate-500 w-40 pt-3 mt-3 h-8'></div>
+                        
                     </div>
                 ))}
-            </div>
-            :
-            [1,2,3,4,5,6,7].map((item,index)=>(
-<div key={index} className='w-full h-[240px] rounded-xl m-2 bg-slate-200 animate-pulse gap-5  p-5'>
-<div className='bg-slate-400 rounded-lg w-40 h-40  p-10 pt-6'> </div>
-<div className='bg-slate-500 w-40 pt-3 mt-3 h-8'> </div>
-</div>
 
-            ))
-           }
+            </div>
+            
+            
+            }
 
         </div>
     )

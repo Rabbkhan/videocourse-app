@@ -16,6 +16,7 @@ const getAllCourseList = async()=>{
         banner {
           url
         }
+        slug
       }
     }`
 
@@ -27,6 +28,93 @@ const getAllCourseList = async()=>{
       }
 }
 
+const getSideBanner = async()=>{
+
+  const query = gql `
+  query GetSideBanner {
+    sideBanners {
+      id
+      name
+      banner {
+        id
+        url
+      }
+      url
+    }
+  }
+  `
+  try {
+    const result = await request(MASTER_URL, query);
+  return result;
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+
+const getCourseById= async(courseId)=>{
+  const query= gql`query MyQuery {
+    courseList(where: {slug: "`+courseId+`"}) {
+      author
+      banner {
+        url
+      }
+      chapter {
+        ... on Chapter {
+          id
+          name
+          video {
+            url
+          }
+        }
+      }
+      demoUrl
+      description
+      free
+      id
+      name
+      slug
+      sourceCode
+      totalChapters
+      slug
+    }
+  }
+  `
+  try {
+    const result = await request(MASTER_URL, query);
+  return result;
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+const enrollToCourse = async (courseId,email)=>{
+  const query=gql`
+  mutation MyMutation {
+    createUserEnrollCourse(
+      data: {courseId: "`+courseId+`", userEmail: "`+email+`", courseList: {connect: {slug: "`+courseId+`"}}}
+    ) {
+      id
+    }
+    publishManyUserEnrollCoursesConnection {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+  }
+  `
+  try {
+    const result = await request(MASTER_URL, query);
+  return result;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export default {
-    getAllCourseList
+    getAllCourseList, getSideBanner,getCourseById,enrollToCourse
 }
