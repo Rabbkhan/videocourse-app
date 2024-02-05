@@ -4,12 +4,18 @@ import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import {useEffect}from 'react'
 import { toast } from 'sonner';
 
-const CourseEnrollSection = ({ courseInfo }) => {
+const CourseEnrollSection = ({ courseInfo,isUserAlreadyEnrolled }) => {
 
 if(!courseInfo) return <p>Loading..</p>
+
+useEffect(() => {
+ 
+console.log('isUserAlreadyEnrolled', isUserAlreadyEnrolled)
+  
+}, [])
 
   const membership = false;
   const { user } = useUser();
@@ -39,7 +45,7 @@ toast("User Enroll Succesful", {
       <h2 className='text-[22px] font-bold text-white'>Enroll The Course</h2>
 
       {/* User has Membership and Already Login  */}
-      {user && (membership || courseInfo.free) ? <div className='flex flex-col gap-3 mt-3'>
+      {user && (membership || courseInfo.free)&&!isUserAlreadyEnrolled ? <div className='flex flex-col gap-3 mt-3'>
         <h2 className='text-white font-light'>EnrollNow to Start Learning and Building the Projects</h2>
         <Button className="bg-white text-blue-700 hover:bg-white hover:text-blue-700 "
         onClick={()=>onEnrollCourse()}
@@ -51,10 +57,15 @@ toast("User Enroll Succesful", {
      <Link href={'/sign-in'}>   <Button className="bg-white text-blue-700 hover:bg-white hover:text-blue-700 ">Enroll Now</Button></Link>
       </div>
         :
-        <div className='flex flex-col gap-3 mt-3'>
+       !isUserAlreadyEnrolled&& <div className='flex flex-col gap-3 mt-3'>
           {/* User Does not Have Membership or not signup/login */}
           <h2 className='text-white font-light'>Buy Monthly Membership and Get Access all Courses</h2>
           <Button className="bg-white text-blue-700 hover:bg-white hover:text-blue-700 ">Buy Membership $2.9</Button>
+        </div>}
+       {isUserAlreadyEnrolled && <div className='flex flex-col gap-3 mt-3'>
+          {/* User Does not Have Membership or not signup/login */}
+          <h2 className='text-white font-light'>Continue to Learn Your Course</h2>
+         <Link href={'/watch-course/'+ isUserAlreadyEnrolled }> <Button className="bg-white text-blue-700 hover:bg-white hover:text-blue-700 ">Continue</Button></Link>
         </div>}
     </div>
   )
