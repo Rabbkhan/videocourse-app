@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { UserButton, useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import GlobalApi from './_utils/GlobalApi'
 
 const page = () => {
 
@@ -16,6 +17,12 @@ else{
 }
 
   },[user])
+
+// user to check user membership
+
+
+
+
   return (
     <div>
       <UserButton afterSignOutUrl="/sign-in"/>

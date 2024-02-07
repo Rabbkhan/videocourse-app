@@ -246,6 +246,44 @@ const getUserAllEnrolledCourseList = async(email)=>{
   }
 }
 
+const addNewMember  = async(email,paymentId) =>{
+  const query = gql `mutation MyMutation {
+    createMembership(data: {active: true, email: "`+email+`", paymentId: "`+paymentId+`"}) {
+      id
+    }
+    publishManyMemberships(to: PUBLISHED) {
+      count
+    }
+  }`
+  try {
+    const result = await request(MASTER_URL, query);
+  console.log(result)
+  return result;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const checkForMemberShip  = async(email) =>{
+
+  const query = gql `
+  query MyQuery {
+    memberships(where: {email: "`+email+`"}) {
+      email
+      id
+      paymentId
+      createdAt
+    }
+  }`
+  try {
+    const result = await request(MASTER_URL, query);
+  console.log(result)
+  return result;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export default {
-    getAllCourseList, getSideBanner,getCourseById,enrollToCourse,checkUserEnrollToCourse,getUserEnrollCourseDetails,markChapterCompleted,getUserAllEnrolledCourseList
+    getAllCourseList, getSideBanner,getCourseById,enrollToCourse,checkUserEnrollToCourse,getUserEnrollCourseDetails,markChapterCompleted,getUserAllEnrolledCourseList,addNewMember,checkForMemberShip
 }

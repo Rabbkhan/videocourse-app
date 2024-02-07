@@ -1,24 +1,27 @@
+'use client'
+import { ClerkProvider } from "@clerk/nextjs";
+import { UserMemberContext } from "./_context/UserMemberContext";
+import { useState } from "react";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from '@clerk/nextjs'
+
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Outfit({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Video App",
-  description: "Video App by create next app",
-};
-
 export default function RootLayout({ children }) {
+  const [isMember, setIsMember] = useState(false);
+
   return (
     <ClerkProvider>
-
-    <html lang="en">
-      <body className={inter.className}>{children}
-      <Toaster />
-      </body>
-    </html>
+      <UserMemberContext.Provider value={{ isMember, setIsMember }}>
+        <html lang="en">
+          <body className={inter.className}>
+            {children}
+            <Toaster />
+          </body>
+        </html>
+      </UserMemberContext.Provider>
     </ClerkProvider>
   );
 }

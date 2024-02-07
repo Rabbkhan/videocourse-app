@@ -32,7 +32,7 @@ const {user} = useUser()
             id:3,
             name:'Membership',
             icon:BadgeIcon,
-            path:'/membership',
+            path:'/videcourse-pro',
             auth:true
 
         },
@@ -59,6 +59,7 @@ const {user} = useUser()
             auth:true
 
         },
+       
         
     ]
 

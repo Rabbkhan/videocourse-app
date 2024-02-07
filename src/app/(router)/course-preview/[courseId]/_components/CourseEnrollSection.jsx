@@ -1,10 +1,11 @@
 
+import { UserMemberContext } from '@/app/_context/UserMemberContext';
 import GlobalApi from '@/app/_utils/GlobalApi';
 import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import {useEffect}from 'react'
+import {useContext, useEffect}from 'react'
 import { toast } from 'sonner';
 
 const CourseEnrollSection = ({ courseInfo,isUserAlreadyEnrolled }) => {
@@ -17,8 +18,10 @@ console.log('isUserAlreadyEnrolled', isUserAlreadyEnrolled)
   
 }, [])
 
-  const membership = false;
+  // const membership = false;
   const { user } = useUser();
+const {isMember,setIsMember} = useContext(UserMemberContext)
+
 const router = useRouter();
   //Enroll to the Course
   const onEnrollCourse =async()=>{
@@ -45,7 +48,7 @@ toast("User Enroll Succesful", {
       <h2 className='text-[22px] font-bold text-white'>Enroll The Course</h2>
 
       {/* User has Membership and Already Login  */}
-      {user && (membership || courseInfo.free)&&!isUserAlreadyEnrolled ? <div className='flex flex-col gap-3 mt-3'>
+      {user && (isMember || courseInfo.free)&&!isUserAlreadyEnrolled ? <div className='flex flex-col gap-3 mt-3'>
         <h2 className='text-white font-light'>EnrollNow to Start Learning and Building the Projects</h2>
         <Button className="bg-white text-blue-700 hover:bg-white hover:text-blue-700 "
         onClick={()=>onEnrollCourse()}
