@@ -14,7 +14,7 @@ if(!courseInfo) return <p>Loading..</p>
 
 useEffect(() => {
  
-console.log('isUserAlreadyEnrolled', isUserAlreadyEnrolled)
+// console.log('isUserAlreadyEnrolled', isUserAlreadyEnrolled)
   
 }, [])
 
@@ -28,7 +28,7 @@ const router = useRouter();
 
     try {
       const res= await GlobalApi.enrollToCourse(courseInfo?.slug,user?.primaryEmailAddress.emailAddress);
-      console.log(res)
+      // console.log(res)
 
       if(res){
 // show Toast on Sucessful Eroll 

@@ -55,7 +55,7 @@ const {user} = useUser()
             id:6,
             name:'Newsplater',
             icon:Mail,
-            path:'/newletter',
+            path:'/newsletter',
             auth:true
 
         },
@@ -66,7 +66,7 @@ const {user} = useUser()
 const path = usePathname();
 
 useEffect(()=>{
-console.log("path", path)
+// console.log("path", path)
 },[])
 
   return (

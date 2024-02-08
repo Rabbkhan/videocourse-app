@@ -40,13 +40,13 @@ const onChapterComplete = async(chapterId)=>{
 
   try {
     const res =  await GlobalApi.markChapterCompleted(params.enrollId, chapterId)
-console.log(res)
+// console.log(res)
 if(res){
   toast('Chapter Mark as a completed!')
   getUserEnrollCourseDetails()
 }
   } catch (error) {
-    console.log(error)
+    // console.log(error)
   }
 }
   return (

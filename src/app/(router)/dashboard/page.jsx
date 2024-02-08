@@ -19,7 +19,7 @@ const [userenrollCourses, setUserEnrollCourses] = useState([])
 
     try {
       const res = await GlobalApi.getUserAllEnrolledCourseList(user.primaryEmailAddress.emailAddress)
-      console.log(res)
+      // console.log(res)
       setUserEnrollCourses(res.userEnrollCourses)
       
     } catch (error) {

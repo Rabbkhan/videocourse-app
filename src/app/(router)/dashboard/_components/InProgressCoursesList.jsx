@@ -16,13 +16,14 @@ const getTotalCompletedChapterPerc =(item) =>{
   return (
     <Link href={"/course-preview/"+course?.courseList?.slug}>
 
-    <div className='border rounded-xl hover:shadow-md hover:shadow-purple-300'>
-    <Image src={course.courseList?.banner?.url}
-    width={500}
-    height={150}
-    alt='banner'
-    className='rounded-t-xl'
-    />
+    <div className='border rounded-xl hover:shadow-md hover:shadow-purple-300 mx-5'>
+    <Image
+        src={course?.courseList?.banner?.url || '/placeholder.png'}
+        width={500}
+        height={150}
+        alt='banner'
+        className='rounded-t-xl'
+      />
     <div className='flex flex-col gap-2 p-1'>
         <h2 className='font-medium'>{course.courseList?.name}</h2>
         <h2 className='text-[12px] text-gray-400'>{course.courseList?.author}</h2>

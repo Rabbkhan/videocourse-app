@@ -23,7 +23,7 @@ const createSubscription = async(planId)=>{
 plan_id:planId
  }))
  try {
-  console.log(res.data)
+  // console.log(res.data)
   setLoader(false)
   setSubscriptionId(res.data.id)
   
@@ -46,7 +46,7 @@ plan_id:planId
       decription:'video course Pro Membership',
       image:'https://rzp-1415-prod-dashboard-activation.s3.ap-south-1.amazonaws.com/org_100000razorpay/main_logo/phplgbGKN',
       handler:async (res) =>{
-        console.log(res)
+        // console.log(res)
         if(res){
        addNewMember(res?.razorpay_payment_id)
         }
@@ -65,7 +65,7 @@ plan_id:planId
    
     try {
       const res = await GlobalApi.addNewMember(user.primaryEmailAddress.emailAddress,paymentId);
-      console.log(res);
+      // console.log(res);
       if(res){
         toast("Payment Successfull")
       }
@@ -77,7 +77,7 @@ plan_id:planId
   }
 
   return (
-    <div className="flex justify-center items-center gap-5 ">
+    <div className="flex justify-center items-center gap-5 mt-24  ">
 
     <Script 
     id="razorpay-checkout-js"
@@ -85,29 +85,43 @@ plan_id:planId
     src="https://checkout.razorpay.com/v1/checkout.js">
 
     </Script>
-      <div className="bg-white shadow-md p-8 border border-gray-200 rounded-lg">
-        <h1 className="text-3xl font-bold mb-4 text-gray-900">Monthly</h1>
-        <p className="text-xl mb-4 text-gray-700" >$4.99/month</p>
-        <ul className="list-disc list-inside mb-6">
-          <li className="text-lg text-gray-700 mb-2">Access to All Courses</li>
-          <li className="text-lg text-gray-700 mb-2">Free Source Code</li>
-        </ul>
-        <Button  onClick={()=>createSubscription('plan_NXUJAVeO3fuHqG')} className=
-      {`  ${isMember ? 'bg-green-700 hover:green-500 ' :' bg-blue-500 hover:bg-blue-600'} text-white font-bold py-2 px-4 rounded`}>
-         {!isMember ? <p>Get Started</p> : <p>Already Enrolled</p>}        </Button>
-      </div>
+    <div className="bg-white shadow-md p-8 border border-gray-200 rounded-lg w-80 h-[400px] text-left mx-20">
+    <h1 className="text-3xl font-bold mb-4 text-gray-900">Monthly</h1>
+    <p className="text-xl mb-4 text-gray-700">$4.99/month</p>
+    <ul className="list-disc list-inside mb-6">
+      <li className="text-lg list-none text-gray-700 mb-2">Access to All Courses</li>
+      <li className="text-lg list-none text-gray-700 mb-2">Free Source Code</li>
+      <li className="text-lg list-none text-gray-700 mb-2">Download Available</li>
+      <li className="text-lg list-none  text-gray-700 mb-2">All Course Pdf Summary</li>
 
-      <div className="bg-white shadow-md p-8 border border-gray-200 rounded-lg">
-        <h1 className="text-3xl font-bold mb-4 text-gray-900">Yearly</h1>
-        <p className="text-xl mb-4 text-gray-700">$39.99/month</p>
-        <ul className="list-disc list-inside mb-6">
-          <li className="text-lg text-gray-700 mb-2">Access to All Courses</li>
-          <li className="text-lg text-gray-700 mb-2">Free Source Code</li>
-        </ul>
-        <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-          Get Started
-        </Button>
-      </div>
+    </ul>
+    <button onClick={() => createSubscription('plan_NXUJAVeO3fuHqG')} 
+            className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ${isMember ? 'cursor-not-allowed opacity-50' : ''}`}>
+      <span id="subscriptionStatus">
+        {isMember ? 'Already Enrolled' : 'Get Started'}
+      </span>
+    </button>
+  </div>
+  <div className="bg-white shadow-md p-8 border border-gray-200 rounded-lg w-80 h-[400px] text-left mx-20">
+    <h1 className="text-3xl font-bold mb-4 text-gray-900">Yearly</h1>
+    <p className="text-xl mb-4 text-gray-700">$34.99/yearly</p>
+    <ul className="list-disc list-inside mb-6">
+      <li className="text-lg list-none text-gray-700 mb-2">Access to All Courses</li>
+      <li className="text-lg list-none text-gray-700 mb-2">Free Source Code</li>
+      <li className="text-lg list-none text-gray-700 mb-2">Download Available</li>
+      <li className="text-lg list-none  text-gray-700 mb-2">All Course Pdf Summary</li>
+
+    </ul>
+    <button className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/2'>
+      {/* <span id="subscriptionStatus">
+        {isMember ? 'Already Enrolled' : 'Get '}
+
+      </span> */}
+      Started
+    </button>
+  </div>
+
+      
     </div>
   );
 };

@@ -19,7 +19,7 @@ const CourseList = () => {
     const getAllCourses = async () => {
         try {
             const res = await GlobalApi.getAllCourseList();
-            console.log(res)
+            // console.log(res)
             setCourseList(res?.courseLists)
 
         } catch (error) {
@@ -54,7 +54,7 @@ const CourseList = () => {
                 <div className='grid grid-col-2 lg:grid-cols-3 gap-3'>
                     {courseList.map((item, index) => (
 
-<Link href={'/course-preview/'+ item.slug}>
+<Link key={index} href={'/course-preview/'+ item.slug}>
 
 
                         <div key={index}>

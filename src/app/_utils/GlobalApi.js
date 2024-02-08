@@ -194,7 +194,7 @@ const markChapterCompleted= async (enrollId,chapterId)=>{
   `
   try {
     const result = await request(MASTER_URL, query);
-  console.log(result)
+  // console.log(result)
   return result;
   } catch (error) {
     console.log(error)
@@ -239,7 +239,7 @@ const getUserAllEnrolledCourseList = async(email)=>{
   `
   try {
     const result = await request(MASTER_URL, query);
-  console.log(result)
+  // console.log(result)
   return result;
   } catch (error) {
     console.log(error)
@@ -257,7 +257,7 @@ const addNewMember  = async(email,paymentId) =>{
   }`
   try {
     const result = await request(MASTER_URL, query);
-  console.log(result)
+  // console.log(result)
   return result;
   } catch (error) {
     console.log(error)
@@ -277,7 +277,7 @@ const checkForMemberShip  = async(email) =>{
   }`
   try {
     const result = await request(MASTER_URL, query);
-  console.log(result)
+  // console.log(result)
   return result;
   } catch (error) {
     console.log(error)

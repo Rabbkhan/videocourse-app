@@ -20,7 +20,7 @@ const {user} = useUser()
 
     try {
     const res= await  GlobalApi.getCourseById(params?.courseId)
-console.log(res)
+// console.log(res)
 setCourseInfo(res?.courseList)
     } catch (error) {
       
@@ -43,7 +43,7 @@ try {
   const res = await GlobalApi.checkUserEnrollToCourse(courseInfo.slug, user.primaryEmailAddress.emailAddress)
   
   if(res?.userEnrollCourses){
-  console.log(res)
+  // console.log(res)
 setIsUserAlreadyEnrolled(res?.userEnrollCourses[0]?.id)
 }
 
