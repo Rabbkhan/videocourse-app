@@ -8,10 +8,10 @@ import CourseVideoDescription from '../../course-preview/[courseId]/_components/
 import { toast } from 'sonner';
 
 const WatchCourse = ({ params }) => {
+  const { user } = useUser();
   const [courseInfo, setCourseInfo] = useState(null);
   const [activeChapterIndex, setActiveChapterIndex] = useState(0)
   const[completedChapter, setCompletedChapter]= useState([])
-  const { user } = useUser();
 
   // Fetch course details when params and user are available
   useEffect(() => {

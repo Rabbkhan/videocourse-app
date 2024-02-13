@@ -8,12 +8,6 @@ import GlobalApi from '@/app/_utils/GlobalApi'
 const Dashboard = () => {
   const {user} =useUser();
 const [userenrollCourses, setUserEnrollCourses] = useState([])
-  useEffect(()=>{
-    user&&getAllUserEnrolledCourses()
-
-  },[user])
-
-
   //  Get all User enrolled course list
   const getAllUserEnrolledCourses = async() =>{
 
@@ -26,7 +20,10 @@ const [userenrollCourses, setUserEnrollCourses] = useState([])
       console.log(error)
     }
   }
+  useEffect(()=>{
+    user&&getAllUserEnrolledCourses()
 
+  },[user])
   return (
 
     <div className="grid grid-cols-1 md:grid-cols-4 p-5 gap-5">

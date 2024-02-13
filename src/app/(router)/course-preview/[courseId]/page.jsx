@@ -12,9 +12,9 @@ import { useUser } from '@clerk/nextjs'
 
 const CoursePreview = ({params}) => {
 
+  const {user} = useUser()
   const [courseInfo, setCourseInfo] = useState()
   const[isUserAlreadyEnrolled, setIsUserAlreadyEnrolled]= useState()
-const {user} = useUser()
   // used to get courseinfo by using slug name 
   const getCourseInfoById= async()=>{
 
@@ -28,11 +28,7 @@ setCourseInfo(res?.courseList)
     }
   }
 
-  useEffect(()=>{
-   courseInfo&&user&&checkUserEnrolledToCourse();
-
-
-  },[courseInfo,user])
+ 
 
   useEffect(()=>{
     params&&getCourseInfoById()
@@ -54,7 +50,11 @@ setIsUserAlreadyEnrolled(res?.userEnrollCourses[0]?.id)
       }
 
 
-
+      useEffect(()=>{
+        courseInfo&&user&&checkUserEnrolledToCourse();
+     
+     
+       },[courseInfo,user])
   return (
   
     <div className='grid grid-cols-1 md:grid-cols-3 p-5 gap-3'>
