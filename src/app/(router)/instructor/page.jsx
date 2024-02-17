@@ -1,18 +1,18 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+'use client';
+import React, { Suspense, useEffect, useState } from 'react'
 import WelcomeBannerStore from './_components/WelcomeBannerStore'
 import SideBanner from '../courses/_components/SideBanner'
 import CommingSoon from './_components/CommingSoon'
+import { useSearchParams } from 'next/navigation'
 
 const Instructor = () => {
   
 
-  //  Get all User enrolled course list
-
+  const params = useSearchParams()
  
 
   return (
-
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="grid grid-cols-1 md:grid-cols-4 p-5 gap-5">
     <div className="col-span-3">
       {/* left Container  */}
@@ -26,7 +26,7 @@ const Instructor = () => {
      <SideBanner/>
       </div>
   </div>
-
+  </Suspense>
     )
 }
 

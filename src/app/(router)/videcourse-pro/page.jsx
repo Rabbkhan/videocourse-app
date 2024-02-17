@@ -11,10 +11,10 @@ import { toast } from 'sonner';
 
 const MonthlyCard = () => {
 
+  const[subscriptionId, setSubscriptionId]= useState(null)
+  const [loader, setLoader] = useState(false);
+  const {isMember,setIsMember} = useContext(UserMemberContext)
   const {user} = useUser()
-const[subscriptionId, setSubscriptionId]= useState(null)
-const [loader, setLoader] = useState(false);
-const {isMember,setIsMember} = useContext(UserMemberContext)
 // to create subscription id 
 const createSubscription = async(planId)=>{
   setLoader(true)
