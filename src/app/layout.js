@@ -2,6 +2,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { UserMemberContext } from "./_context/UserMemberContext";
 import { useState } from "react";
+import { Analytics } from '@vercel/analytics/react';
 // import { Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <body >
             {children}
             <Toaster />
+            <Analytics />
           </body>
         </html>
       </UserMemberContext.Provider>
